@@ -1,0 +1,107 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#game-board {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url(imgs/background.jpg) no-repeat center center;
+    background-size: 100% 100%;
+    overflow: hidden;
+}
+#title {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    /* top: 10px; */
+    width: 100vw;
+    top: 2vh;
+    /* overflow: hidden; */
+}
+.titleimg {
+    width: 28vw;
+    max-width: 350px;
+    height: auto;
+}
+
+#boogeyman {
+    position: absolute;
+    bottom: 35%;
+    left: 5vw;
+    width: 50px;
+    height: 60px;
+    background-image: url(imgs/boogymen.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 10;
+}
+
+#score {
+    display: flex;
+    position: absolute;
+    right: 3vw;
+    top: 3vw;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.candle {
+    position: absolute;
+    bottom: 35%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+}
+
+.candle1 {
+    background-image: url(imgs/candle.png);
+    width: 35px;
+    height: 55px;
+}
+
+.candle2 {
+    background-image: url(imgs/candle2.png);
+    width: 28px;
+    height: 45px;
+}
+
+#start-screen {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+#start-btn {
+    padding: 10px 35px;
+    font-size: 26px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3b1456;
+    border: 3px solid #9b51e0;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(155, 81, 224, 0.6);
+    transition: all 0.2 ease;
+}
+
+#start-btn:hover {
+    background-color: #531c77;
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(155, 81, 224, 0.9);
+}
