@@ -1,8 +1,9 @@
+const gameBoard = document.getElementById('game-board');
 const stage = document.getElementById('candle-cont');
 const scoreDisplay = document.getElementById('score-val');
 const menuScreen = document.getElementById('start-screen');
 const playBtn = document.getElementById('start-btn');
-const hero = document.getElementById('boogeyman');
+const hero = document.getElementById('boogeyman')
 
 let currentScore = 0;
 let playing = false;
@@ -17,19 +18,39 @@ const ambientMusic = new Audio('imgs/spooky.mp3');
 ambientMusic.loop = true;
 ambientMusic.volume = 0.5;
 
-window.addEventListener('click', () => {
-    if (ambientMusic.paused) {
-        ambientMusic.currentTime = 3.3;
-        ambientMusic.play().catch(e => console.log('Audio init skipped:', e));
-    }
-}, { once: true });
+const jumpSound = new Audio ('imgs/jump.mp3');
+jumpSound.volume = 0.7;
 
+const gameOverSound = new Audio ('imgs/gameover.mp3');
+gameOverSound.volume = 1.0;
+
+const clickSound = new Audio ('imgs/click.mp3');
+clickSound.volume = 1.0;
+
+const scoreSound = new Audio('imgs/score.mp3');
+scoreSound.volume = 0.5;
+
+
+gameBoard.addEventListener('click', (e) => {
+    if (!playing || isJumping) return;
+
+    e.preventDefault();
+
+    isJumping = true;
+    speedY = 16;
+
+    jumpSound.currentTime = 0;
+    jumpSound.play().catch(e => console.log('jump audio error:', e));
+})
 
 window.addEventListener('keydown', (e) => {
     if (!playing) return;
     if ((e.code === 'Space' || e.code === 'ArrowUp') && !isJumping) {
         isJumping = true;
         speedY = 16;
+
+        jumpSound.currentTime = 0;
+        jumpSound.play().catch(e => console.log('jump audio error:', e));
     }
 });
 
@@ -90,6 +111,9 @@ function runGameEngine(timestamp) {
             spawnedCandles.splice(i, 1);
             currentScore += 10;
             scoreDisplay.textContent = currentScore;
+
+            scoreSound.currentTime = 0;
+            scoreSound.play().catch(e => console.log('score audio error:', e));
             continue;
         }
 
@@ -101,8 +125,14 @@ function runGameEngine(timestamp) {
             heroRect.top < itemRect.bottom
         ) {
             playing = false;
-            alert(`Game Over! Final Score: ${currentScore}`);
-            location.reload();
+
+            gameOverSound.currentTime = 0;
+            gameOverSound.play().catch(e => console.log('Game over audio error:', e));
+
+           setTimeout(() => {
+                alert(`Game Over! Final Score: ${currentScore}`);
+                location.reload();
+            }, 300);
             return;
         }
     }
@@ -110,7 +140,15 @@ function runGameEngine(timestamp) {
     requestAnimationFrame(runGameEngine);
 }
 
-playBtn.addEventListener('click', () => {
+playBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+
+    clickSound.currentTime = 0;
+    clickSound.play().catch(e => console.log('click sound audio error:', e));
+
+    ambientMusic.currentTime = 3.3;
+    ambientMusic.play().catch(e => console.log('BGM audio error'));
+    
     menuScreen.style.display = 'none';
     playing = true;
     currentScore = 0;
