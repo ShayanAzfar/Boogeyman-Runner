@@ -10,9 +10,11 @@
 ### This game is fully made by simple HTML CSS and JS and it shows everything is possible on the internet!
 
 ## Inspiration?
-### Inspired by the offline dinosaur game, when your internet is throwing up you get to play it on chrome.
+### Inspired by the offline dinosaur game, when your internet is throwing up, so you get to play it on chrome.
 
 ## Demo
 ### [Boogeyman Runner](https://shayanazfar.github.io/Boogeyman-Runner/)
+
+### Some Spooky Screenshots
 <img width="1365" height="768" alt="starting" src="https://github.com/user-attachments/assets/1d11c499-e394-4c03-9b27-bd1665fed524" />
 <img width="1363" height="768" alt="the game" src="https://github.com/user-attachments/assets/e56d5117-b02a-4727-bf40-47c7c7518bdf" />
